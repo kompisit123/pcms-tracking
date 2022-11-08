@@ -7,17 +7,12 @@ function Navbar() {
 	return (
 		<nav className="header">
 			<h1 className="logo">
-				<a href="#">NextAuth</a>
+				<a href="#">PEA</a>
 			</h1>
 			<ul className={`main-nav `}>
 				<li>
-					<Link href="/">
-						<a>Home</a>
-					</Link>
-				</li>
-				<li>
 					<Link href="/dashboard">
-						<a>Data Set</a>
+						<a>นำเข้าข้อมูล</a>
 					</Link>
 				</li>
 
@@ -30,7 +25,7 @@ function Navbar() {
 									signIn("github");
 								}}
 							>
-								Sign In
+								เข้าสู่ระบบ
 							</a>
 						</Link>
 					</li>
