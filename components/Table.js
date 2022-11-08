@@ -1,6 +1,8 @@
 import MaterialTable from "material-table";
 import { forwardRef } from "react";
-import AddBox from "@material-ui/icons/AddBox";
+////import AddBox from "@material-ui/icons/AddBox";
+//import AddCircleIcon from '@mui/icons-material/AddCircle';
+import AddCircleIcon from "@material-ui/icons/AddCircle";
 import ArrowDownward from "@material-ui/icons/ArrowDownward";
 import Check from "@material-ui/icons/Check";
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
@@ -15,6 +17,7 @@ import Remove from "@material-ui/icons/Remove";
 import SaveAlt from "@material-ui/icons/SaveAlt";
 import Search from "@material-ui/icons/Search";
 import ViewColumn from "@material-ui/icons/ViewColumn";
+import VisibilityIcon from '@material-ui/icons/Visibility';
 
 import React, { useState, useEffect } from "react";
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
@@ -111,7 +114,8 @@ export default function Table() {
 
 
 	const tableIcons = {
-		Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
+		//Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
+		Add: forwardRef((props, ref) => <AddCircleIcon {...props} ref={ref} />),
 		Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
 		Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
 		Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
@@ -135,7 +139,7 @@ export default function Table() {
 		ThirdStateCheck: forwardRef((props, ref) => (
 			<Remove {...props} ref={ref} />
 		)),
-		ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
+		ViewColumn: forwardRef((props, ref) => <VisibilityIcon {...props} ref={ref} />),
 	};
 
 
