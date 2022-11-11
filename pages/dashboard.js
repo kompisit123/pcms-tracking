@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { getSession, signIn } from "next-auth/react";
 import Table from "../components/Table";
 
 function Dashboard() {

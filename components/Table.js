@@ -1,5 +1,4 @@
-import Head from "next/head";
-import MaterialTable from "material-table";
+import MaterialTable , { MTableToolbar } from "material-table";
 import { forwardRef } from "react";
 ////import AddBox from "@material-ui/icons/AddBox";
 //import AddCircleIcon from '@mui/icons-material/AddCircle';
@@ -81,6 +80,8 @@ export default function Table() {
 		}
 		});
 
+		console.log(raw)
+
 		var requestOptions = {
 		method: 'POST',
 		headers: myHeaders,
@@ -94,7 +95,6 @@ export default function Table() {
 		.catch(error => console.log('error', error));	
 	};
 
-
 	const deleteRow = (id) => {
 
 		var myHeaders = new Headers();
@@ -105,7 +105,8 @@ export default function Table() {
 		headers: myHeaders,
 		redirect: 'follow'
 		};
-
+        
+		console.log("Heyyyyyyyyyyyy"+id)
 		fetch(`http://localhost:1337/api/stocks/${id}`, requestOptions)
 		.then(response => response.text())
 		.then(result => console.log(result))
@@ -116,7 +117,7 @@ export default function Table() {
 
 	const tableIcons = {
 		//Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
-		Add: forwardRef((props, ref) => <AddCircleIcon {...props} ref={ref} />),
+		Add: forwardRef((props, ref) => <AddCircleIcon  style={{ color: '#9B59B6' }} {...props} ref={ref} />),
 		Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
 		Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
 		Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
@@ -145,28 +146,36 @@ export default function Table() {
 
 
 	const columns = [
-		// { title: "ID", field: "unit", editable: false },
+
 		{ 
 			title: "ปีที่ได้รับงบประมาณ", 
 			field: "year_budget",
+			// editComponent: props => (
+			// 	<input
+			// 	  type="text"
+			// 	  value={props.value}
+			// 	  onChange={e => props.onChange(e.target.value)}
+			// 	/>
+			
+			//   ),
 			cellStyle: {
 				whiteSpace: 'nowrap'
 			   },
 			headerStyle: {
-				backgroundColor: '#DEF3FA',
-				color: 'Black',
+				backgroundColor: '#9B59B6',
+				color: '#FFFFFF',
 				 whiteSpace: 'nowrap'
 			  },
 	    },
 		{ 
 			title: "รายการแผนการจัดซื้อ/จ้าง/เช่า", 
-			field: "detail",
+			field: "detail_plan",
 			cellStyle: {
 				whiteSpace: 'nowrap'
 			   },
 			headerStyle: {
-				backgroundColor: '#DEF3FA',
-				color: 'Black',
+				backgroundColor: '#9B59B6',
+				color: '#FFFFFF',
 				 whiteSpace: 'nowrap'
 			  }, 
 		},
@@ -177,8 +186,8 @@ export default function Table() {
 				whiteSpace: 'nowrap'
 			   },
 			headerStyle: {
-				backgroundColor: '#DEF3FA',
-				color: 'Black',
+				backgroundColor: '#9B59B6',
+				color: '#FFFFFF',
 				 whiteSpace: 'nowrap'
 			  }, 
 		},
@@ -186,8 +195,8 @@ export default function Table() {
 			title: "รายการที่", 
 			field: "list_no",
 			headerStyle: {
-				backgroundColor: '#DEF3FA',
-				color: 'Black',
+				backgroundColor: '#9B59B6',
+				color: '#FFFFFF',
 				 whiteSpace: 'nowrap'
 			  }, 
 		},
@@ -198,8 +207,8 @@ export default function Table() {
 				whiteSpace: 'nowrap'
 			   },
 			headerStyle: {
-				backgroundColor: '#DEF3FA',
-				color: 'Black',
+				backgroundColor: '#9B59B6',
+				color: '#FFFFFF',
 				 whiteSpace: 'nowrap'
 			  },  
 		},
@@ -210,8 +219,8 @@ export default function Table() {
 				whiteSpace: 'nowrap'
 			   },
 			headerStyle: {
-				backgroundColor: '#DEF3FA',
-				color: 'Black',
+				backgroundColor: '#9B59B6',
+				color: '#FFFFFF',
 				 whiteSpace: 'nowrap'
 			  },  
 		},
@@ -222,8 +231,8 @@ export default function Table() {
 				whiteSpace: 'nowrap'
 			   },
 			headerStyle: {
-				backgroundColor: '#DEF3FA',
-				color: 'Black',
+				backgroundColor: '#9B59B6',
+				color: '#FFFFFF',
 				 whiteSpace: 'nowrap'
 			  },  
 		},
@@ -234,8 +243,8 @@ export default function Table() {
 				whiteSpace: 'nowrap'
 			   },
 			headerStyle: {
-				backgroundColor: '#DEF3FA',
-				color: 'Black',
+				backgroundColor: '#9B59B6',
+				color: '#FFFFFF',
 				 whiteSpace: 'nowrap'
 			  },  
 		},
@@ -246,8 +255,8 @@ export default function Table() {
 				whiteSpace: 'nowrap'
 			   },
 			headerStyle: {
-				backgroundColor: '#DEF3FA',
-				color: 'Black',
+				backgroundColor: '#9B59B6',
+				color: '#FFFFFF',
 				 whiteSpace: 'nowrap'
 			  },  
 		},
@@ -259,37 +268,37 @@ export default function Table() {
 				whiteSpace: 'nowrap'
 			   },
 			headerStyle: {
-				backgroundColor: '#DEF3FA',
-				color: 'Black',
+				backgroundColor: '#9B59B6',
+				color: '#FFFFFF',
 				 whiteSpace: 'nowrap'
 			  }, 
 		},
 		{ 
 			title: "วัน/เดือน/ปี", 
 			field: "date_contract",
-			editComponent: props => (
-				<MuiPickersUtilsProvider utils={DateFnsUtils} 
-							locale={props.dateTimePickerLocalization}
-							>
-					   <DatePicker
-							  format="dd/MM/yyyy"
-							  value={props.value || null}
-							  onChange={props.onChange}
-							  clearable
-							  InputProps={{
-									   style: {
-											fontSize: 13,
-									   }
-							  }}
-						 />
-				  </MuiPickersUtilsProvider>
-				 ),
+			// editComponent: props => (
+			// 	<MuiPickersUtilsProvider utils={DateFnsUtils} 
+			// 				locale={props.dateTimePickerLocalization}
+			// 				>
+			// 		   <DatePicker
+			// 				  format="dd/MM/yyyy"
+			// 				  value={props.value || null}
+			// 				  onChange={props.onChange}
+			// 				  clearable
+			// 				  InputProps={{
+			// 						   style: {
+			// 								fontSize: 13,
+			// 						   }
+			// 				  }}
+			// 			 />
+			// 	  </MuiPickersUtilsProvider>
+			// 	 ),
 			cellStyle: {
 				whiteSpace: 'nowrap'
 			   },
 			headerStyle: {
-				backgroundColor: '#DEF3FA',
-				color: 'Black',
+				backgroundColor: '#9B59B6',
+				color: '#FFFFFF',
 				 whiteSpace: 'nowrap'
 			  }, 
 		 },
@@ -297,8 +306,8 @@ export default function Table() {
 			title: "รายละเอียดปัญหาอุปสรรค", 
 			field: "remark",
 			headerStyle: {
-				backgroundColor: '#DEF3FA',
-				color: 'Black',
+				backgroundColor: '#9B59B6',
+				color: '#FFFFFF',
 				 whiteSpace: 'nowrap'
 			  },  
 			hidden: true,
@@ -307,14 +316,14 @@ export default function Table() {
 			title: "วันที่แก้ไขข้อมูล", 
 			field: "updatedAt",
 			type: "date",
-			dateSetting: { locale: "en-th" },
+			 dateSetting: { locale: "th-TH" },
 			cellStyle: {
 				whiteSpace: 'nowrap'
 			   },
 			editable: false,
 			headerStyle: {
-				backgroundColor: '#DEF3FA',
-				color: 'Black',
+				backgroundColor: '#9B59B6',
+				color: '#FFFFFF',
 				 whiteSpace: 'nowrap'
 			  }, 
 			hidden: false, 
@@ -328,8 +337,8 @@ export default function Table() {
 			   },
 			editable: false,
 			headerStyle: {
-				backgroundColor: '#DEF3FA',
-				color: 'Black',
+				backgroundColor: '#9B59B6',
+				color: '#FFFFFF',
 				 whiteSpace: 'nowrap'
 			  },
 			hidden: true, 
@@ -339,27 +348,26 @@ export default function Table() {
 	const tableRef = React.createRef();
 	return (
 		<>
-			<Head>
-				<title>Create Next App</title>
-				<link
-					rel="stylesheet"
-					href="https://fonts.googleapis.com/icon?family=Material+Icons"
-				/>
-
-				<meta name="description" content="Generated by create next app" />
-				<link rel="icon" href="/favicon.ico" />
-				<link
-					rel="stylesheet"
-					href="https://fonts.googleapis.com/icon?family=Material+Icons"
-				/>
-			</Head>
+		
 			<div>
 			<h2>ข้อมูลวางแผนพัสดุ</h2>
 			<h4 align="center">ฝ่ายวางแผนจัดหาพัสดุ</h4>
 			<MaterialTable
+
+				components={{
+					//overide searchbar
+					Toolbar: props => (
+						<div style={{ 
+							backgroundColor: '#FFFFFF' ,
+							fontFamily : 'Kanit',
+							}}>
+							<MTableToolbar {...props} />
+						</div>
+					)
+				}}
+				
 				tableRef={tableRef}
 				icons={tableIcons}
-				//title="Client Details"
 				title="กองวางแผนจัดหาพัสดุ 1"
 				data={data}
 				columns={columns}
@@ -386,7 +394,8 @@ export default function Table() {
 							setTimeout(() => {
 								setData(updatedRows);
 								//deleteRowonDatabase
-								deleteRow(index);
+								console.log("fffffffffffff")
+								//deleteRow(index);
 								resolve();
 							}, 2000);
 						}),
@@ -409,13 +418,39 @@ export default function Table() {
 					columnsButton: true, //show hide column button
 					exportButton: true,
 					rowStyle : { 
-						color: '#0070f3',
+						color: '#000000',
 						fontFamily: 'Kanit',
-						size: 90
+						fontSize: 14,
+						fontWeight:200
 
  
 
 					 },
+					 headerStyle: {
+						backgroundColor: '#9B59B6',
+						color: '#9B59B6',
+						fontFamily: 'Kanit',
+						fontSize: 16,
+						fontWeight:300
+						
+					
+					},
+					searchFieldStyle: {
+						backgroundColor: '#FFF',
+						color: '#99A3A4',
+						fontFamily: 'Kanit',
+						fontSize: 16,
+						fontWeight:300,
+						padding: "5px 10px 5px 15px",
+						borderRadius: "12px",
+						disableUnderline: true,
+						border: "1px solid #707070",
+						InputProps: {disableUnderline: true },
+
+						
+						
+						
+					},
 				}}
 
 				detailPanel={[
@@ -477,6 +512,7 @@ export default function Table() {
 						 }
 					}
 				}}
+				
 			/>
 		</div>
 		</>
