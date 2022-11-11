@@ -1,0 +1,1 @@
+export { default as TableManager} from "./table-manage"
