@@ -1,5 +1,5 @@
 {
-    "name": "crud-project",
+    "name": "pcms-tracking",
     "private": true,
     "scripts": {
         "dev": "next dev",
